@@ -8,6 +8,8 @@ use Getopt::Long qw(GetOptions);
 use Module::Path qw(module_path);
 use Pod::Usage qw(pod2usage);
 
+# VERSION
+
 my %opts;
 GetOptions(\%opts,
            'help|h|?',
@@ -68,6 +70,7 @@ my $status = $all_found ? 0 : 1;
 exit $status;
 
 # ABSTRACT: Display the path to a perl module (installed locally)
+# PODNAME: mpath
 
 =head1 USAGE
 
