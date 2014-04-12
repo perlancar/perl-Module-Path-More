@@ -30,10 +30,8 @@ if ($opts{help}) {
     )
 }
 elsif (!@ARGV) {
-    pod2usage(
-        -message => 'No module specified',
-        -verbose => 1,
-    );
+    warn "mpath: Please specify at least one module\n";
+    exit 99;
 }
 
 $opts{full} //= @ARGV > 1 ? 1:0;
@@ -59,10 +57,10 @@ for my $module (@ARGV) {
 
     if (!@paths) {
         $all_found = 0;
-        warn "$module not found\n" unless $opts{quiet};
+        warn "mpath: $module not found\n" unless $opts{quiet};
     } else {
         for (@paths) {
-            print "$module " if $opts{full};
+            print "$module\t" if $opts{full};
             print "$_\n";
         }
     }
