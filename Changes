@@ -1,5 +1,12 @@
 Revision history for Alt-Module-Path-SHARYANTO
 
-0.01     2014-04-09 (SHARYANTO) (not yet released)
+0.02     2014-04-12 (SHARYANTO)
+
+         - Some tweaks to bin/mpath: Make --pod equal to --find-pod --nofind-pm
+         --nofind-pmc. Turn on full by default if there are more than one
+         argument. Use tab as separator character.
+
+
+0.01     2014-04-09 (SHARYANTO)
 
          - First release.
