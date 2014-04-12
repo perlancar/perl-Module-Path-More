@@ -14,7 +14,7 @@ my %opts;
 GetOptions(\%opts,
            'help|h|?',
            'quiet|q',
-           'full|f',
+           'full|f!',
            'abs',
            'all',
            'find-pm|pm!'   => \$opts{find_pm},
@@ -35,6 +35,8 @@ elsif (!@ARGV) {
         -verbose => 1,
     );
 }
+
+$opts{full} //= @ARGV > 1 ? 1:0;
 
 my $all_found = 1;
 
