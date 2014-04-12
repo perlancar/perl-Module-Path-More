@@ -104,13 +104,13 @@ If one of the module wasn't found, mpath will exit with the exit code 1 and
 print the following message (you can silence it with the option B<--quiet>):
 
   % mpath Foo::Bar
-  Foo::Bar not found
+  mpath: Foo::Bar not found
 
 or:
 
   % mpath Moose Foo::Bar
-  /usr/local/lib/perl5/site_perl/5.16.0/darwin-2level/Moose.pm
-  Foo::Bar not found
+  Moose    /usr/local/lib/perl5/site_perl/5.16.0/darwin-2level/Moose.pm
+  mpath: Foo::Bar not found
 
 =head1 OPTIONS
 
@@ -122,7 +122,9 @@ Print this help message and exit.
 
 =item B<-f>, B<--full>
 
-Print module name.
+Print module name before the path. For convenience this is turned on by default
+if there are more than one argument (but you can still turn it off using
+C<--nofull>).
 
 =item B<-q>, B<--quiet>
 
