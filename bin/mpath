@@ -130,27 +130,27 @@ C<--nofull>).
 
 Don't print any error when one of the module requested could not be found.
 
-=item C<--abs>
+=item B<--abs>
 
 Absolutize paths.
 
-=item C<--all>
+=item B<--all>
 
 Find all found paths in C<@INC> instead of the first one.
 
-=item C<--[no]find-pm>
+=item B<--[no]find-pm>
 
 Find C<.pm> files. Default is on.
 
-=item C<--[no]find-pmc>
+=item B<--[no]find-pmc>
 
 Find C<.pmc> files. Default is on.
 
-=item C<--[no]find-pod>
+=item B<--[no]find-pod>
 
 Find C<.pod> files.
 
-=item C<--pod>
+=item B<--pod>
 
 Equivalent to C<--find-pod --nofind-pm --nofind-pmc>.
 
