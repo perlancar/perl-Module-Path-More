@@ -10,6 +10,9 @@ our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(module_path pod_path);
 
 # VERSION
+# DATE
+
+our $ALT = 'SHARYANTO';
 
 my $SEPARATOR;
 
