@@ -54,7 +54,6 @@ sub module_path {
             if (-d $prefix) {
                 $add->($prefix);
                 last unless $opts->{all};
-                next;
             }
         }
         if ($opts->{find_pmc}) {
