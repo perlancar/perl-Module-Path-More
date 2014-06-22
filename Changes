@@ -1,5 +1,10 @@
 Revision history for Alt-Module-Path-SHARYANTO
 
+0.13.1   2014-06-22 (SHARYANTO)
+
+         - Add option: find_prefix.
+
+
 0.13     2014-04-25 (SHARYANTO)
 
          - No functional changes.
@@ -10,8 +15,8 @@ Revision history for Alt-Module-Path-SHARYANTO
 0.02     2014-04-12 (SHARYANTO)
 
          - Some tweaks to bin/mpath: Make --pod equal to --find-pod --nofind-pm
-         --nofind-pmc. Turn on full by default if there are more than one
-         argument. Use tab as separator character.
+           --nofind-pmc. Turn on full by default if there are more than one
+           argument. Use tab as separator character.
 
 
 0.01     2014-04-09 (SHARYANTO)
