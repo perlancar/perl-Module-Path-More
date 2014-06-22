@@ -4,7 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Getopt::Long qw(GetOptions);
+use Getopt::Long qw(:config auto_help auto_version);
 use Module::Path qw(module_path);
 use Pod::Usage qw(pod2usage);
 
@@ -12,7 +12,6 @@ use Pod::Usage qw(pod2usage);
 
 my %opts;
 GetOptions(\%opts,
-           'help|h|?',
            'quiet|q',
            'full|f!',
            'abs|P',
