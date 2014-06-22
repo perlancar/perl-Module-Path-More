@@ -1,8 +1,16 @@
 Revision history for Alt-Module-Path-SHARYANTO
 
+0.13.2   2014-06-22 (SHARYANTO)
+
+         - [Bugfix] Fix logic bug which made --find-prefix negates other
+           --find-*.
+
+         - Add short options: -a (for --all), -P (for --abs).
+
+
 0.13.1   2014-06-22 (SHARYANTO)
 
-         - Add option: find_prefix.
+         - Add option: find_prefix (--find-prefix, -p).
 
 
 0.13     2014-04-25 (SHARYANTO)
