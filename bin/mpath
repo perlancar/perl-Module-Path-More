@@ -4,7 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Getopt::Long qw(:config auto_help auto_version);
+use Getopt::Long qw(:config auto_help auto_version bundling);
 use Module::Path qw(module_path);
 use Pod::Usage qw(pod2usage);
 
@@ -28,13 +28,7 @@ GetOptions(\%opts,
        )
     or pod2usage 2;
 
-if ($opts{help}) {
-    pod2usage(
-        -verbose => 2,
-        -exitval => 0,
-    )
-}
-elsif (!@ARGV) {
+if (!@ARGV) {
     warn "mpath: Please specify at least one module\n";
     exit 99;
 }
