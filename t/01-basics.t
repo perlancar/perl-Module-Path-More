@@ -13,11 +13,16 @@ subtest module_path => sub {
     ok(module_path('Module::Path'));
     ok(module_path('Module/Path.pm'));
 
-    # XXX opt: all=>1
-    # XXX opt: abs=>1
-    # XXX opt: find_pm=>1
-    # XXX opt: find_pmc=>1
-    # XXX opt: find_pod=>1
+    # XXX opt: all
+    # XXX opt: abs
+    # XXX opt: find_pm
+    # XXX opt: find_pmc
+    # XXX opt: find_pod
+
+    subtest "opt: find_prefix" => sub {
+        ok(!module_path('Module'));
+        ok(module_path('Module', {find_prefix=>1}));
+    };
 };
 
 #subtest pod_path => sub {
