@@ -4,14 +4,14 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Module::Path qw(module_path pod_path);
+use SHARYANTO::Module::Path qw(module_path pod_path);
 use Test::More 0.98;
 
 subtest module_path => sub {
-    ok(module_path('strict'));
-    ok(module_path('strict.pm'));
-    ok(module_path('Module::Path'));
-    ok(module_path('Module/Path.pm'));
+    ok(module_path(module=>'strict'));
+    ok(module_path(module=>'strict.pm'));
+    ok(module_path(module=>'Module::Path'));
+    ok(module_path(module=>'Module/Path.pm'));
 
     # XXX opt: all
     # XXX opt: abs
@@ -20,8 +20,8 @@ subtest module_path => sub {
     # XXX opt: find_pod
 
     subtest "opt: find_prefix" => sub {
-        ok(!module_path('Module'));
-        ok(module_path('Module', {find_prefix=>1}));
+        ok(!module_path(module=>'Module'));
+        ok(module_path(module=>'Module', find_prefix=>1));
     };
 };
 
