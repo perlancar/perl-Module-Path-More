@@ -84,6 +84,12 @@ _
             default => 1,
             cmdline_aliases => { p=>{} },
         },
+        all => {
+            summary => 'Return all results instead of just the first',
+            schema  => 'bool',
+            default => 0,
+            cmdline_aliases => { a=>{} },
+        },
         abs => {
             summary => 'Whether to return absolute paths',
             schema  => 'bool',
