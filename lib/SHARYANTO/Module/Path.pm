@@ -123,12 +123,6 @@ sub module_path {
         next if ref($dir);
 
         my $prefix = $dir . $SEPARATOR . $relpath;
-        if ($args{find_prefix}) {
-            if (-d $prefix) {
-                $add->($prefix);
-                last unless $args{all};
-            }
-        }
         if ($args{find_pmc}) {
             my $file = $prefix . ".pmc";
             if (-f $file) {
@@ -147,6 +141,12 @@ sub module_path {
             my $file = $prefix . ".pod";
             if (-f $file) {
                 $add->($file);
+                last unless $args{all};
+            }
+        }
+        if ($args{find_prefix}) {
+            if (-d $prefix) {
+                $add->($prefix);
                 last unless $args{all};
             }
         }
