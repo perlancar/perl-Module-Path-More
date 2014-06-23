@@ -50,9 +50,13 @@ _
             completion => sub {
                 require Complete::Module;
                 my %args = @_;
+                #use DD; dd \%args;
                 Complete::Module::complete_module(
                     word => $args{word},
                     separator => '/',
+                    find_pm  => $args{args}{find_pm},
+                    find_pmc => $args{args}{find_pmc},
+                    find_pod => $args{args}{find_pod},
                 );
             },
         },
@@ -159,6 +163,18 @@ sub module_path {
     delete $spec->{args}{find_pm};
     delete $spec->{args}{find_pmc};
     delete $spec->{args}{find_pod};
+    $spec->{args}{module}{completion} = sub {
+        require Complete::Module;
+        my %args = @_;
+        #use DD; dd \%args;
+        Complete::Module::complete_module(
+            word => $args{word},
+            separator => '/',
+            find_pm  => 0,
+            find_pmc => 0,
+            find_pod => 1,
+        );
+    };
     $SPEC{pod_path} = $spec;
 }
 sub pod_path {
