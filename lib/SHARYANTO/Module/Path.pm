@@ -47,6 +47,14 @@ _
             schema  => 'str*',
             req     => 1,
             pos     => 0,
+            completion => sub {
+                require Complete::Module;
+                my %args = @_;
+                Complete::Module::complete_module(
+                    word => $args{word},
+                    separator => '/',
+                );
+            },
         },
         find_pm => {
             summary => 'Whether to find .pm files',
