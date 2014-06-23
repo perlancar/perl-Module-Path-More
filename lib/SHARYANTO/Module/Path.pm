@@ -49,14 +49,17 @@ _
             pos     => 0,
             completion => sub {
                 require Complete::Module;
+                require SHARYANTO::Complete::Util;
                 my %args = @_;
                 #use DD; dd \%args;
-                Complete::Module::complete_module(
-                    word => $args{word},
-                    separator => '/',
-                    find_pm  => $args{args}{find_pm},
-                    find_pmc => $args{args}{find_pmc},
-                    find_pod => $args{args}{find_pod},
+                SHARYANTO::Complete::Util::mimic_shell_dir_completion(
+                    completion => Complete::Module::complete_module(
+                        word => $args{word},
+                        separator => '/',
+                        find_pm  => $args{args}{find_pm},
+                        find_pmc => $args{args}{find_pmc},
+                        find_pod => $args{args}{find_pod},
+                    ),
                 );
             },
         },
@@ -159,27 +162,30 @@ sub module_path {
 {
     my $spec = clone($SPEC{module_path});
     $spec->{summary} = 'Find path to Perl POD files',
-    $spec->{summary} = 'Shortcut for `module_path(..., find_pod=>1, find_pm=>0, find_pmc=>0)`.';
+    $spec->{summary} = 'Shortcut for `module_path(..., find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>1, )`.';
     delete $spec->{args}{find_pm};
     delete $spec->{args}{find_pmc};
     delete $spec->{args}{find_pod};
+    delete $spec->{args}{find_prefix};
     $spec->{args}{module}{completion} = sub {
         require Complete::Module;
         my %args = @_;
         #use DD; dd \%args;
-        Complete::Module::complete_module(
-            word => $args{word},
-            separator => '/',
-            find_pm  => 0,
-            find_pmc => 0,
-            find_pod => 1,
+        SHARYANTO::Complete::Util::mimic_shell_dir_completion(
+            completion=>Complete::Module::complete_module(
+                word => $args{word},
+                separator => '/',
+                find_pm  => 0,
+                find_pmc => 0,
+                find_pod => 1,
+            ),
         );
     };
     $SPEC{pod_path} = $spec;
 }
 sub pod_path {
     my %args = @_;
-    module_path(%args, find_pm=>0, find_pmc=>0, find_pod=>1);
+    module_path(%args, find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>0);
 }
 
 1;
