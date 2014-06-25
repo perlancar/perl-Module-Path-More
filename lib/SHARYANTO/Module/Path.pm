@@ -59,6 +59,7 @@ _
                         find_pm  => $args{args}{find_pm},
                         find_pmc => $args{args}{find_pmc},
                         find_pod => $args{args}{find_pod},
+                        ci => 1,
                     ),
                 );
             },
