@@ -49,10 +49,10 @@ _
             pos     => 0,
             completion => sub {
                 require Complete::Module;
-                require SHARYANTO::Complete::Util;
+                require Complete::Util;
                 my %args = @_;
                 #use DD; dd \%args;
-                SHARYANTO::Complete::Util::mimic_shell_dir_completion(
+                Complete::Util::mimic_shell_dir_completion(
                     completion => Complete::Module::complete_module(
                         word => $args{word},
                         separator => '/',
@@ -175,9 +175,10 @@ sub module_path {
     delete $spec->{args}{find_prefix};
     $spec->{args}{module}{completion} = sub {
         require Complete::Module;
+        require Complete::Util;
         my %args = @_;
         #use DD; dd \%args;
-        SHARYANTO::Complete::Util::mimic_shell_dir_completion(
+        Complete::Util::mimic_shell_dir_completion(
             completion=>Complete::Module::complete_module(
                 word => $args{word},
                 separator => '/',
