@@ -68,7 +68,7 @@ _
             schema  => 'bool',
             default => 1,
         },
-        find_pm => {
+        find_pmc => {
             summary => 'Whether to find .pmc files',
             schema  => 'bool',
             default => 1,
