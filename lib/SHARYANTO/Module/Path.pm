@@ -47,22 +47,6 @@ _
             schema  => 'str*',
             req     => 1,
             pos     => 0,
-            completion => sub {
-                require Complete::Module;
-                require Complete::Util;
-                my %args = @_;
-                #use DD; dd \%args;
-                Complete::Util::mimic_shell_dir_completion(
-                    completion => Complete::Module::complete_module(
-                        word => $args{word},
-                        separator => '/',
-                        find_pm  => $args{args}{find_pm},
-                        find_pmc => $args{args}{find_pmc},
-                        find_pod => $args{args}{find_pod},
-                        ci => 1,
-                    ),
-                );
-            },
         },
         find_pm => {
             summary => 'Whether to find .pm files',
