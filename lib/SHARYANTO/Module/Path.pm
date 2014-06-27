@@ -4,7 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Function::Fallback::CoreOrPP qw(clone);
+use Perinci::Sub::Util qw(gen_modified_sub);
 
 require Exporter;
 our @ISA       = qw(Exporter);
@@ -166,35 +166,23 @@ sub module_path {
     }
 }
 
-{
-    my $spec = clone($SPEC{module_path});
-    $spec->{summary} = 'Find path to Perl POD files',
-    $spec->{summary} = 'Shortcut for `module_path(..., find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>1, )`.';
-    delete $spec->{args}{find_pm};
-    delete $spec->{args}{find_pmc};
-    delete $spec->{args}{find_pod};
-    delete $spec->{args}{find_prefix};
-    $spec->{args}{module}{completion} = sub {
-        require Complete::Module;
-        require Complete::Util;
+gen_modified_sub(
+    output_name => 'pod_path',
+    base_name   => 'module_path',
+    summary     => 'Find path to Perl POD files',
+    description => <<'_',
+
+Shortcut for `module_path(..., find_pm=>0, find_pmc=>0, find_pod=>1,
+find_prefix=>1, )`.
+
+_
+    remove_args => [qw/find_pm find_pmc find_pod find_prefix/],
+    output_code => sub {
         my %args = @_;
-        #use DD; dd \%args;
-        Complete::Util::mimic_shell_dir_completion(
-            completion=>Complete::Module::complete_module(
-                word => $args{word},
-                separator => '/',
-                find_pm  => 0,
-                find_pmc => 0,
-                find_pod => 1,
-            ),
-        );
-    };
-    $SPEC{pod_path} = $spec;
-}
-sub pod_path {
-    my %args = @_;
-    module_path(%args, find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>0);
-}
+        module_path(
+            %args, find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>0);
+    },
+);
 
 1;
 # ABSTRACT: Get path to locally installed Perl module
