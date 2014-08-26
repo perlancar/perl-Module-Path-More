@@ -198,6 +198,8 @@ resolving is being done by default because I think that's the sensible default
 quirks that we might not want to deal with at all). However, an C<abs> bool
 option is provided if a user wants to do that.
 
+This module has also diverged by introducing a different interface since v0.14.
+
 References:
 
 =over
