@@ -189,6 +189,27 @@ _
 
 =head1 DESCRIPTION
 
+This module is a fork of L<Module::Path>. It contains features that are not (or
+have not been accepted) in the original module, namely: finding all matches
+instead of the first found match, and finding .pmc/.pod in addition to .pm
+files. There is also a difference of behavior: no abs_path() or symlink
+resolving is being done by default because I think that's the sensible default
+(doing abs_path() or resolving symlinks will sometimes fail or expose filesystem
+quirks that we might not want to deal with at all). However, an C<abs> bool
+option is provided if a user wants to do that.
+
+References:
+
+=over
+
+=item * L<https://github.com/neilbowers/Module-Path/issues/6>
+
+=item * L<https://github.com/neilbowers/Module-Path/issues/7>
+
+=item * L<https://github.com/neilbowers/Module-Path/issues/10>
+
+=back
+
 
 =head1 SEE ALSO
 
