@@ -66,7 +66,7 @@ _
         find_prefix => {
             summary => 'Whether to find module prefixes',
             schema  => 'bool',
-            default => 1,
+            default => 0,
         },
         all => {
             summary => 'Return all results instead of just the first',
