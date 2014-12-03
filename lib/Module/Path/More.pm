@@ -206,16 +206,17 @@ using a code reference in C<@INC>, as described in C<require> in L<perlfunc>.
 
 =head1 SEE ALSO
 
-L<Module::Path>. This module is a fork of Module::Path. It contains features
-that are not (or have not been accepted) in the original module, namely: finding
-all matches instead of the first found match, and finding C<.pmc/.pod> in
-addition to .pm files. B<Note that the interface is different>
-(Module::Path::More accept hash/named argument) so the two modules are not
-drop-in replacements for each other. Also, note that by default Module::Path
-does I<not> do an C<abs_path()> to each file it finds, unlike Module::Path. I
-think that's the sensible default (doing abs_path() or resolving symlinks will
-sometimes fail or expose filesystem quirks that we might not want to deal with
-at all). If you want absolute path, set the C<abs> argument to true.
+L<Module::Path>. Module::Path::More is actually a fork of Module::Path.
+Module::Path::More contains features that are not (or have not been accepted) in
+the original module, namely: finding all matches instead of the first found
+match, and finding C<.pmc/.pod> in addition to .pm files. B<Note that the
+interface is different> (Module::Path::More accepts hash/named arguments) so the
+two modules are not drop-in replacements for each other. Also, note that by
+default Module::Path::More does B<not> do an C<abs_path()> to each file it
+finds, unlike Module::Path. I think that's the sensible default (doing
+abs_path() or resolving symlinks will sometimes fail or expose filesystem quirks
+that we might not want to deal with at all). If you want absolute path, set the
+C<abs> argument to true.
 
 Command-like utility is not included in this distribution, unlike L<mpath> in
 C<Module-Path>. However, you can use L<pmpath> from C<App-PMUtils> which uses
