@@ -232,8 +232,3 @@ References:
 =item * L<https://github.com/neilbowers/Module-Path/issues/10>
 
 =back
-
-
-=head1 SEE ALSO
-
-L<Module::Path>
