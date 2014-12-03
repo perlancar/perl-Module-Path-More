@@ -1,4 +1,7 @@
-package SHARYANTO::Module::Path;
+package Module::Path::More;
+
+# DATE
+# VERSION
 
 use 5.010001;
 use strict;
@@ -9,9 +12,6 @@ use Perinci::Sub::Util qw(gen_modified_sub);
 require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(module_path pod_path);
-
-# VERSION
-# DATE
 
 my $SEPARATOR;
 
@@ -170,7 +170,7 @@ _
 
 =head1 SYNOPSIS
 
- use SHARYANTO::Module::Path 'module_path', 'pod_path';
+ use Module::Path::More qw(module_path pod_path);
 
  $path = module_path(module=>'Test::More');
  if (defined($path)) {
@@ -189,16 +189,37 @@ _
 
 =head1 DESCRIPTION
 
-This module is a fork of L<Module::Path>. It contains features that are not (or
-have not been accepted) in the original module, namely: finding all matches
-instead of the first found match, and finding .pmc/.pod in addition to .pm
-files. There is also a difference of behavior: no abs_path() or symlink
-resolving is being done by default because I think that's the sensible default
-(doing abs_path() or resolving symlinks will sometimes fail or expose filesystem
-quirks that we might not want to deal with at all). However, an C<abs> bool
-option is provided if a user wants to do that.
+Module::Path::More provides a function, C<module_path()>, which will find where
+a module (or module prefix, or .pod file) is installed locally. (There is also
+another function C<pod_path()> which is just a convenience wrapper.)
 
-This module has also diverged by introducing a different interface since v0.14.
+It works by looking in all the directories in @INC for an appropriately named
+file. If module is C<Foo::Bar>, will search for C<Foo/Bar.pm>, C<Foo/Bar.pmc>
+(if C<find_pmc> argument is true), C<Foo/Bar> directory (if C<find_prefix>
+argument is true), or C<Foo/Bar.pod> (if C<find_pod> argument is true).
+
+Caveats: Obviously this only works where the module you're after has its own
+C<.pm> file. If a file defines multiple packages, this won't work. This also
+won't find any modules that are being loaded in some special way, for example
+using a code reference in C<@INC>, as described in C<require> in L<perlfunc>.
+
+
+=head1 SEE ALSO
+
+L<Module::Path>. This module is a fork of Module::Path. It contains features
+that are not (or have not been accepted) in the original module, namely: finding
+all matches instead of the first found match, and finding C<.pmc/.pod> in
+addition to .pm files. B<Note that the interface is different>
+(Module::Path::More accept hash/named argument) so the two modules are not
+drop-in replacements for each other. Also, note that by default Module::Path
+does I<not> do an C<abs_path()> to each file it finds, unlike Module::Path. I
+think that's the sensible default (doing abs_path() or resolving symlinks will
+sometimes fail or expose filesystem quirks that we might not want to deal with
+at all). If you want absolute path, set the C<abs> argument to true.
+
+Command-like utility is not included in this distribution, unlike L<mpath> in
+C<Module-Path>. However, you can use L<pmpath> from C<App-PMUtils> which uses
+this module.
 
 References:
 
@@ -214,7 +235,5 @@ References:
 
 
 =head1 SEE ALSO
-
-L<SHARYANTO>
 
 L<Module::Path>

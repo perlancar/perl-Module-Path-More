@@ -1,4 +1,9 @@
-Revision history for SHARYANTO-Module-Path
+Revision history for Module-Path-More
+
+0.22    2014-12-03 (PERLANCAR) (unreleased)
+
+        - Rename dist/module from SHARYANTO-Module-Path to Module-Path-More.
+
 
 0.21    2014-12-02 (PERLANCAR)
 
