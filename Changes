@@ -1,6 +1,13 @@
 Revision history for Module-Path-More
 
-0.22    2014-12-03 (PERLANCAR) (unreleased)
+0.23    2014-12-10 (PERLANCAR)
+
+        - No functional changes.
+
+        - POD wording/grammar fixes.
+
+
+0.22    2014-12-03 (PERLANCAR)
 
         - Rename dist/module from SHARYANTO-Module-Path to Module-Path-More.
 
