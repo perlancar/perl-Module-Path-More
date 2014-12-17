@@ -17,6 +17,11 @@ my $SEPARATOR;
 
 our %SPEC;
 
+$SPEC{':package'} = {
+    v => 1.1,
+    summary => 'Get path to locally installed Perl module',
+};
+
 BEGIN {
     if ($^O =~ /^(dos|os2)/i) {
         $SEPARATOR = '\\';
@@ -166,7 +171,7 @@ _
 );
 
 1;
-# ABSTRACT: Get path to locally installed Perl module
+# ABSTRACT:
 
 =head1 SYNOPSIS
 
