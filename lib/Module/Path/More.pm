@@ -219,9 +219,10 @@ interface is different> (Module::Path::More accepts hash/named arguments) so the
 two modules are not drop-in replacements for each other. Also, note that by
 default Module::Path::More does B<not> do an C<abs_path()> to each file it
 finds. I think this module's choice (not doing abs_path) is a more sensible
-default, because doing abs_path() or resolving symlinks will sometimes fail or
-expose filesystem quirks that we might not want to deal with at all. However, if
-you want to do abs_path, you can do so by setting C<abs> option to true.
+default, because usually there is no actual need to do so and doing abs_path()
+or resolving symlinks will sometimes fail or expose filesystem quirks that we
+might not want to deal with at all. However, if you want to do abs_path, you can
+do so by setting C<abs> option to true.
 
 Command-like utility is not included in this distribution, unlike L<mpath> in
 C<Module-Path>. However, you can use L<pmpath> from C<App-PMUtils> which uses
