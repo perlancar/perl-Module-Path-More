@@ -1,5 +1,13 @@
 Revision history for Module-Path-More
 
+0.25    2014-12-26 (PERLANCAR)
+
+	- No functional changes.
+
+	- [doc] Add link to Module::Path RT issue about the argument
+	  for/against doing abs_path().
+
+
 0.24    2014-12-26 (PERLANCAR)
 
 	- Make module tinier by avoiding the use of Perinci::Sub::Util.
