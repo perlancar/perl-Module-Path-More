@@ -150,7 +150,7 @@ sub module_path {
     }
 }
 
-$SPEC{module_path} = {
+$SPEC{pod_path} = {
     v => 1.1,
     summary => 'Get path to locally installed POD',
     description => <<'_',

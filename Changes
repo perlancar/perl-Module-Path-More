@@ -1,5 +1,17 @@
 Revision history for Module-Path-More
 
+0.24    2014-12-26 (PERLANCAR)
+
+	- Make module tinier by avoiding the use of Perinci::Sub::Util.
+
+	- Add tests on entries in @INC not being a dir, doesn't exist, not
+	  -r, not -x (we don't add code for this, current code is doing
+	  fine).
+
+	- Add a reason of why we don't do abs_path() by default: there is
+	  usually no actual need to do so.
+
+
 0.23    2014-12-10 (PERLANCAR)
 
         - No functional changes.
