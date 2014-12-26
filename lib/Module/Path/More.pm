@@ -256,6 +256,6 @@ References:
 
 =item * L<https://github.com/neilbowers/Module-Path/issues/10>
 
-=item * https://rt.cpan.org/Public/Bug/Display.html?id=100979
+=item * L<https://rt.cpan.org/Public/Bug/Display.html?id=100979>
 
 =back
