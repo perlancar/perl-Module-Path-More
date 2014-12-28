@@ -242,7 +242,7 @@ or resolving symlinks will sometimes fail or expose filesystem quirks that we
 might not want to deal with at all. However, if you want to do abs_path, you can
 do so by setting C<abs> option to true.
 
-Command-like utility is not included in this distribution, unlike L<mpath> in
+Command-line utility is not included in this distribution, unlike L<mpath> in
 C<Module-Path>. However, you can use L<pmpath> from C<App-PMUtils> which uses
 this module.
 
