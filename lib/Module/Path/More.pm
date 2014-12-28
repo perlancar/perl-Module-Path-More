@@ -184,8 +184,7 @@ _
     result_naked => 1,
 };
 sub pod_path {
-    my %args = @_;
-    module_path(%args, find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>0);
+    module_path(@_, find_pm=>0, find_pmc=>0, find_pod=>1, find_prefix=>0);
 }
 
 1;

@@ -1,5 +1,14 @@
 Revision history for Module-Path-More
 
+0.27    2014-12-29 (PERLANCAR)
+
+	- No functional changes.
+
+	- [Bugfix] Remove copy-paste mistake.
+
+	- [opt] Avoid creating hash twice in podpath.
+
+
 0.26    2014-12-28 (PERLANCAR)
 
 	- No functional changes.

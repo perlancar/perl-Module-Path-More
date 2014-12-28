@@ -30,8 +30,6 @@ subtest module_path => sub {
         my ($fh, $filename) = tempfile();
         my $dir = tempdir(CLEANUP => 1);
 
-        my $prefix =
-
         local @INC = ($dir, @INC);
 
         # we're fine (don't die) when an entry in @INC doesn't exist
