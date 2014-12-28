@@ -1,5 +1,13 @@
 Revision history for Module-Path-More
 
+0.26    2014-12-28 (PERLANCAR)
+
+	- No functional changes.
+
+	- Adjust test: don't empty @INC because it will fail on some
+	  systems.
+
+
 0.25    2014-12-26 (PERLANCAR)
 
 	- No functional changes.
