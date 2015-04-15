@@ -1,5 +1,13 @@
 Revision history for Module-Path-More
 
+0.28    2015-04-15 (PERLANCAR)
+
+	- No functional changes.
+
+	- Add note about the pro's and con's of using module_path() to
+	  check the availability of a module.
+
+
 0.27    2014-12-29 (PERLANCAR)
 
 	- No functional changes.
