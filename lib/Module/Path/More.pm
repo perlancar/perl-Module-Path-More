@@ -225,6 +225,23 @@ C<.pm> file. If a file defines multiple packages, this won't work. This also
 won't find any modules that are being loaded in some special way, for example
 using a code reference in C<@INC>, as described in C<require> in L<perlfunc>.
 
+To check whether a module is available/loadable, it's generally better to use
+something like:
+
+ if (eval { require Some::Module; 1 }) {
+     # module is available
+ }
+
+because this works with fatpacking or any other C<@INC> hook that might be
+installed. If you use:
+
+ if (module_path(module => "Some::Module")) {
+     # module is available
+ }
+
+then it only works if the module is locatable in the filesystem. But on the
+other hand this method can avoid actual loading of the module.
+
 
 =head1 SEE ALSO
 
