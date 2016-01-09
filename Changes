@@ -1,5 +1,10 @@
 Revision history for Module-Path-More
 
+0.30    2016-01-09 (PERLANCAR)
+
+	- Make $SEPARATOR a package global so it's accessible from outside.
+
+
 0.29    2015-09-03 (PERLANCAR)
 
 	- No functional changes.
