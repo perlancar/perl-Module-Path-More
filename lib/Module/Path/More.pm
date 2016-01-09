@@ -11,7 +11,7 @@ require Exporter;
 our @ISA       = qw(Exporter);
 our @EXPORT_OK = qw(module_path pod_path);
 
-my $SEPARATOR;
+our $SEPARATOR;
 
 our %SPEC;
 
