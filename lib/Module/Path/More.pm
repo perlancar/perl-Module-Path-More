@@ -202,7 +202,7 @@ sub pod_path {
  }
 
  # find all found modules, as well as .pmc and .pod files
- @path = module_path(module=>'Foo::Bar', all=>1, find_pmc=>1, find_pod=>1);
+ $paths = module_path(module=>'Foo::Bar', all=>1, find_pmc=>1, find_pod=>1);
 
  # just a shortcut for module_path(module=>'Foo',
  #                                 find_pm=>0, find_pmc=>0, find_pod=>1);
