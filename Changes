@@ -1,5 +1,14 @@
 Revision history for Module-Path-More
 
+0.31    2016-08-04 (PERLANCAR)
+
+	- No functional changes.
+
+        - [doc] Fix example in Synopsis (all=>1 returns arrayref, not list).
+
+        - [doc][build] Update repository link.
+
+
 0.30    2016-01-09 (PERLANCAR)
 
 	- Make $SEPARATOR a package global so it's accessible from outside.
