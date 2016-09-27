@@ -38,7 +38,7 @@ $SPEC{module_path} = {
 Search `@INC` (reference entries are skipped) and return path(s) to Perl module
 files with the requested name.
 
-This function is like the one from `Module::Path`, except with a different
+This function is like the one from <pm:Module::Path>, except with a different
 interface and more options (finding all matches instead of the first, the option
 of not absolutizing paths, finding `.pmc` & `.pod` files, finding module
 prefixes).
