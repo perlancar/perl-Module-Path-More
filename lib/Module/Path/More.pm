@@ -53,23 +53,58 @@ _
         },
         find_pm => {
             summary => 'Whether to find .pm files',
-            schema  => 'bool',
+            schema  => ['int*', min=>0],
             default => 1,
+            description => <<'_',
+
+The value of this option is an integer number from 0. 0 means to not search for
+.pm files, while number larger than 0 means to search for .pm files. The larger
+the number, the lower the priority. If more than one type is found (prefix, .pm,
+.pmc, .pod) then the type with the lowest number is returned first.
+
+_
         },
         find_pmc => {
             summary => 'Whether to find .pmc files',
-            schema  => 'bool',
-            default => 1,
+            schema  => ['int*', min=>0],
+            default => 2,
+            description => <<'_',
+
+The value of this option is an integer number from 0. 0 means to not search for
+.pmc files, while number larger than 0 means to search for .pmc files. The
+larger the number, the lower the priority. If more than one type is found
+(prefix, .pm, .pmc, .pod) then the type with the lowest number is returned
+first.
+
+_
         },
         find_pod => {
             summary => 'Whether to find .pod files',
-            schema  => 'bool',
+            schema  => ['int*', min=>0],
             default => 0,
+            description => <<'_',
+
+The value of this option is an integer number from 0. 0 means to not search for
+.pod files, while number larger than 0 means to search for .pod files. The
+larger the number, the lower the priority. If more than one type is found
+(prefix, .pm, .pmc, .pod) then the type with the lowest number is returned
+first.
+
+_
         },
         find_prefix => {
             summary => 'Whether to find module prefixes',
-            schema  => 'bool',
+            schema  => ['int*', min=>0],
             default => 0,
+            description => <<'_',
+
+The value of this option is an integer number from 0. 0 means to not search for
+module prefix, while number larger than 0 means to search for module prefix. The
+larger the number, the lower the priority. If more than one type is found
+(prefix, .pm, .pmc, .pod) then the type with the lowest number is returned
+first.
+
+_
         },
         all => {
             summary => 'Return all results instead of just the first',
@@ -86,6 +121,20 @@ _
         schema => ['any' => of => ['str*', ['array*' => of => 'str*']]],
     },
     result_naked => 1,
+    examples => [
+        {
+            summary => 'Find the first Foo::Bar (.pm or .pmc) in @INC',
+            args => {module => 'Foo::Bar'},
+        },
+        {
+            summary => 'Find all Foo::Bar (.pm or .pmc) in @INC, return absolute paths',
+            args => {module => 'Foo::Bar', all => 1, abs => 1},
+        },
+        {
+            summary => 'Find the Rinci (.pod first, then .pm) in @INC',
+            args => {module => 'Rinci', find_pod => 1, find_pm => 2, find_pmc => 0},
+        },
+    ],
 };
 sub module_path {
     my %args = @_;
@@ -95,14 +144,23 @@ sub module_path {
     $args{abs}         //= 0;
     $args{all}         //= 0;
     $args{find_pm}     //= 1;
-    $args{find_pmc}    //= 1;
+    $args{find_pmc}    //= 2;
     $args{find_pod}    //= 0;
     $args{find_prefix} //= 0;
 
     require Cwd if $args{abs};
 
     my @res;
-    my $add = sub { push @res, $args{abs} ? Cwd::abs_path($_[0]) : $_[0] };
+    my %unfound = (
+        ("pm" => 1)     x !!$args{find_pm},
+        ("pmc" => 1)    x !!$args{find_pmc},
+        ("pod" => 1)    x !!$args{find_pod},
+        ("prefix" => 1) x !!$args{find_prefix},
+    );
+    my $add = sub {
+        my ($path, $prio) = @_;
+        push @res, [$args{abs} ? Cwd::abs_path($path) : $path, $prio];
+    };
 
     my $relpath;
 
@@ -114,34 +172,40 @@ sub module_path {
         next if ref($dir);
 
         my $prefix = $dir . $SEPARATOR . $relpath;
-        if ($args{find_pmc}) {
-            my $file = $prefix . ".pmc";
-            if (-f $file) {
-                $add->($file);
-                last unless $args{all};
-            }
-        }
         if ($args{find_pm}) {
             my $file = $prefix . ".pm";
             if (-f $file) {
-                $add->($file);
-                last unless $args{all};
+                $add->($file, $args{find_pm});
+                delete $unfound{pm};
+                last if !keys(%unfound) && !$args{all};
+            }
+        }
+        if ($args{find_pmc}) {
+            my $file = $prefix . ".pmc";
+            if (-f $file) {
+                $add->($file, $args{find_pmc});
+                delete $unfound{pmc};
+                last if !keys(%unfound) && !$args{all};
             }
         }
         if ($args{find_pod}) {
             my $file = $prefix . ".pod";
             if (-f $file) {
-                $add->($file);
-                last unless $args{all};
+                $add->($file, $args{find_pod});
+                delete $unfound{pod};
+                last if !keys(%unfound) && !$args{all};
             }
         }
         if ($args{find_prefix}) {
             if (-d $prefix) {
-                $add->($prefix);
-                last unless $args{all};
+                $add->($prefix, $args{find_prefix});
+                delete $unfound{prefix};
+                last if !keys(%unfound) && !$args{all};
             }
         }
     }
+
+    @res = map { $_->[0] } sort { $a->[1] <=> $b->[1] } @res;
 
     if ($args{all}) {
         return \@res;

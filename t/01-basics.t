@@ -15,11 +15,13 @@ subtest module_path => sub {
     ok(module_path(module=>'Module::Path::More'));
     ok(module_path(module=>'Module/Path/More.pm'));
 
+    like(module_path(module=>'Config', find_pm =>1, find_pod=>2, find_pmc=>0), qr/\.pm$/ , 'find .pm before .pod');
+    like(module_path(module=>'Config', find_pod=>1, find_pm =>2, find_pmc=>0), qr/\.pod$/, 'find .pod before .pm');
+    like(module_path(module=>'Config', find_pod=>2, find_pm =>3, find_pmc=>0, find_prefix=>1), qr/Config$/, 'find prefix before .pod/.pm');
+
     # XXX opt: all
     # XXX opt: abs
-    # XXX opt: find_pm
     # XXX opt: find_pmc
-    # XXX opt: find_pod
 
     subtest "opt: find_prefix" => sub {
         ok(!module_path(module=>'Module'));
