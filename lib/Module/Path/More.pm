@@ -323,8 +323,8 @@ might not want to deal with at all. However, if you want to do abs_path, you can
 do so by setting C<abs> option to true.
 
 Command-line utility is not included in this distribution, unlike L<mpath> in
-C<Module-Path>. However, you can use L<pmpath> from C<App-PMUtils> which uses
-this module.
+C<Module-Path>. However, you can use L<pmpath|https://metacpan.org/pod/distribution/App-PMUtils/bin/pmpath> from L<App::PMUtils> distribution
+which uses this module.
 
 References:
 
