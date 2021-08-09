@@ -58,6 +58,7 @@ subtest module_path => sub {
             mkdir "$dir/3", ; chmod 0, "$dir/3";
             local $INC[0] = ("$dir/3");
             lives_ok { module_path(module=>'strict') };
+            cmp_ok((chmod 0755, "$dir/3"), '>=', 0, "Ensure tempdir CLEANUP");
         }
     }
 };
